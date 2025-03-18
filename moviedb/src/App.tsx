@@ -1,22 +1,27 @@
-
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, CssBaseline, Box } from '@mui/material';
 import { Provider } from 'react-redux';
 import theme from './styles/theme';
 import Navbar from './component/NavBar';
 import { store } from './redux/store';
-
-// Pages
 import Home from './pages/Home';
+import Search from './pages/Search';
 
-function App () {
+function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <Router>
           <Navbar />
           <Box sx={{ mt: 8 }}>
-            <Home/>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/search" element={<Search />} />
+            </Routes>
           </Box>
+        </Router>
       </ThemeProvider>
     </Provider>
   );

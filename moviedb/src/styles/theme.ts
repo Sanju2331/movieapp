@@ -8,7 +8,7 @@ const theme = createTheme({
       main: 'rgba(243, 26, 26, 0.9)', // Netflix-like red as the primary color //[pause]
     }, 
     background: { 
-      default: 'rgba(212, 209, 209, 0.9)', // Background color for the whole app //[pause]
+      default: 'rgba(65, 47, 62, 0.9)', // Background color for the whole app //[pause]
       paper: 'rgba(168, 76, 76, 0.9)', // Background color for components like cards //[pause]
     }, 
   }, 

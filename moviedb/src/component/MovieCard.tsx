@@ -8,7 +8,7 @@ interface Movie {
     poster_path: string;
     release_date: string;
     vote_average: number | null;
-    overview: string;
+    
   }
  
   interface MovieCardProps {
@@ -47,13 +47,15 @@ interface Movie {
             <Typography gutterBottom variant="h6" component="div" sx={{ fontWeight: 'bold'}}>
   {movie.title}
 </Typography>
-                <Typography variant='body2' color='text.secondary'></Typography>
+                <Typography variant='body2' color='text.secondary'>
                 Rating: {movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'} /10
+                </Typography>
             </CardContent>
 
 
         
-        </Card>);
+        </Card>
+    );
     
 }
   

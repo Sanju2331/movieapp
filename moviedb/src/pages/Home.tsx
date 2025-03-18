@@ -6,7 +6,7 @@ import MovieCard from '../component/MovieCard';
 import '../styles/MovieList.css';
 
 
-const MovieList: React.FC = () => {
+const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>(); 
   const { populerMovies, trendingMovies, loading, error } = useSelector(
     (state: RootState) => state.movies 
@@ -42,9 +42,9 @@ const MovieList: React.FC = () => {
 const gridStyle = {
   display: 'grid',
   gridTemplateColumns: 'repeat(4, 1fr)',
-  gap: '0 30px',
+  gap: '20px',
   padding: '0 16px',
   margin: '0 auto',
 };
 
-export default MovieList;
+export default Home;

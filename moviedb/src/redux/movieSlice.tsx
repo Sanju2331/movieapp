@@ -1,19 +1,24 @@
 import { createSlice,createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { getPopularMovies,getTrendingMovies } from "../utills/api";
-
+import api from '../utills/api';
 
 interface MovieState {
     populerMovies: any[];
     trendingMovies: any[];
+    searchResults:any[];
     loading: boolean;
     error: string | null;
+   
   }
   
   const initialState: MovieState = {
     populerMovies: [],
     trendingMovies: [],
+    searchResults: [],
     loading: false,
     error: null,
+   
+
   };
   
   export const fetchPopulerMovies = createAsyncThunk(
@@ -30,6 +35,15 @@ export const fetchTrendingMovies = createAsyncThunk(
         return response.data.results;
     }
 );
+export const searchMoviesAsync = createAsyncThunk(
+  'movies/searchMovies',
+  async (query: string) => {
+    const response = await api.get(`/search/movie?query=${query}`);
+    return response.data.results;
+  }
+
+);
+
 
 const movieSlice = createSlice({
     name: "movies",
@@ -59,9 +73,11 @@ const movieSlice = createSlice({
           .addCase(fetchTrendingMovies.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message || "Failed to fetch movies";
-          });
-
-    },
+          })
+          .addCase(searchMoviesAsync.fulfilled, (state, action: PayloadAction<any[]>) => {
+            state.searchResults = action.payload;
+    });
+  },
   });
-
+    
   export default movieSlice.reducer;
